@@ -1,5 +1,5 @@
-./conf/*
-./Res/*
-./.vscode/*
-__pycache__/*
+/conf/*
+/Res/*
+/.vscode/*
+/__pycache__/*
 *.json
