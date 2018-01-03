@@ -17,9 +17,18 @@ class jsonGenerator(jsonBase):
         self.__fp.close()
 
     def setRoot(self, obj):
-        pass
+        self.__root = self.isObject(obj) and {} or []
 
     def genObj(self, **kv):
+        pass
+
+    def genArray(self, *kv):
+        pass
+
+    def addObj(self, **kv):
+        pass
+
+    def addArray(self, *kv):
         pass
 
 
