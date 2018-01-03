@@ -1,5 +1,5 @@
 from JsonBase import jsonBase
-
+import json
 
 class jsonGenerator(jsonBase):
     __fp = ''
@@ -17,24 +17,50 @@ class jsonGenerator(jsonBase):
         self.__fp.close()
 
     def setRoot(self, obj):
-        self.__root = self.isObject(obj) and {} or []
+        if self.isObject(obj):
+            self.__root = {}
+        elif self.isArray(obj):
+            self.__root = []
+        else:
+            raise ValueError("not array or object",obj)
 
-    def genObj(self, **kv):
+    def dump(self):
+        json.dumps(self.__root)
+
+    def getRoot(self):
+        return self.__root
+
+    def genObj(self, obj, **kv):
         pass
 
-    def genArray(self, *kv):
+    def genArray(self, obj, *kv):
         pass
 
-    def addObj(self, **kv):
+    def addObj(self, obj, **kv):
         pass
 
-    def addArray(self, *kv):
+    def addArray(self, obj, *kv):
         pass
 
+if __name__ == '__main__':
+    doc = {
+        'hands': [], 
+        'chi': [],
+        'peng':[],
+        'ZiMo':False,  
+        'GangShangKaiHua':False,
+        'QiangGang':False,
+        'MiaoShouHuiChun':False,
+        'HeJueZhang':False,
+        'HuaFan':0,
+        'ExceptedRes':{}
+        }
 
-doc = 0
-cardobj = dict()
-print(doc)
+    jg = jsonGenerator(r'Res/dump.json')
+    jg.setRoot([])
+    root = jg.getRoot()
+    root.append(doc)
+    print(root)
+    root = jg.getRoot()
+    print(root)
 
-doc = []
-print(doc)
